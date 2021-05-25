@@ -102,7 +102,7 @@ Java_com_jackz314_resample_Resample_nativeProcess__J_3B(JNIEnv *env, jobject thi
     int outputLenEst = (int) ((state->last_ratio) * inputLen) + 5; // estimated output len
     data.input_frames = inputLen / state->channels;
     data.output_frames = outputLenEst / state->channels;
-    float *out_data_float = malloc((state->last_ratio) * sizeof(float) * inputLen);
+    float *out_data_float = malloc(outputLenEst * sizeof(float));
     data.data_out = out_data_float;
     float *in_data_float = malloc(inputLen * sizeof(float));
     short *in_data_ptr = (*env)->GetPrimitiveArrayCritical(env, in_data, false);
@@ -179,7 +179,7 @@ Java_com_jackz314_resample_Resample_nativeProcessCopy(JNIEnv *env, jobject thiz,
     int outputLenEst = (int) ((state->last_ratio) * inputLen) + 5; // estimated output len
     data.input_frames = inputLen / state->channels;
     data.output_frames = outputLenEst / state->channels;
-    float *out_data_float = malloc((state->last_ratio) * sizeof(float) * inputLen);
+    float *out_data_float = malloc(outputLenEst * sizeof(float));
     data.data_out = out_data_float;
     float *in_data_float = malloc(inputLen * sizeof(float));
     short *in_data_ptr = (short *) (*env)->GetByteArrayElements(env, in_data, false);
